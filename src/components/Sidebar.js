@@ -15,7 +15,7 @@ const Sidebar = () => {
       <div className="px-5 py-3">
         <Link
           className="flex items-center justify-between text-[#0dd6b8]"
-          to="/"
+          to="/home"
         >
           <h1 className="text-xl font-bold">iLibrary</h1>
           <button>
@@ -26,7 +26,7 @@ const Sidebar = () => {
       <div className="flex flex-col text-[16px] gap-4">
         <Link
           className="py-2 px-5 rounded-md hover:bg-[#0dd6b814] hover:text-[#0dd6b8] flex items-center gap-3"
-          to="/"
+          to="/home"
         >
           <AiOutlineHome />
           <span>Home</span>

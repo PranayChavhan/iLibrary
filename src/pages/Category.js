@@ -3,10 +3,23 @@ import { BsSearch } from "react-icons/bs";
 import Java from "../components/Category/Java";
 import Networking from "../components/Category/Networking";
 import ThirdYear from "../components/Category/ThirdYear";
+import Footer from "../components/Footer";
+import Sidebar from "../components/Sidebar";
+import Topbar from "../components/Topbar";
 
 const Category = () => {
+  
   return (
-    <div className="mt-16">
+
+    <div className="bg-[#030508] min-h-screen">
+    <div className="grid grid-cols-11">
+      <div className="col-start-1 col-end-3 bg-[#0a101b] text-[#b5b5be] min-h-screen fixed w-[18%]">
+        <Sidebar/>
+      </div>
+      <div className="col-start-3 col-end-12 text-[#fafafb] relative">
+        <Topbar/>
+        
+        <div className="mt-16">
       <div className=" py-3 px-5 flex flex-col justify-center items-center">
         <h2 className="text-[36.8px] font-semibold pt-5">
           Search by Book Name
@@ -121,6 +134,17 @@ const Category = () => {
       <Networking/>
       <ThirdYear/>
     </div>
+
+        <Footer/>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+    
   );
 };
 
