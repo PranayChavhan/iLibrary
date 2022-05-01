@@ -13,10 +13,10 @@ const Category = () => {
 
     <div className="bg-[#030508] min-h-screen">
     <div className="grid grid-cols-11">
-      <div className="col-start-1 col-end-3 bg-[#0a101b] text-[#b5b5be] min-h-screen fixed w-[18%]">
+      <div className="hidden sm:block col-start-1 col-end-3 bg-[#0a101b] text-[#b5b5be] min-h-screen fixed w-[18%]">
         <Sidebar/>
       </div>
-      <div className="col-start-3 col-end-12 text-[#fafafb] relative">
+      <div className="col-start-1 sm:col-start-3 col-end-12 text-[#fafafb] relative">
         <Topbar/>
         
         <div className="mt-16">
@@ -24,9 +24,9 @@ const Category = () => {
         <h2 className="text-[36.8px] font-semibold pt-5">
           Search by Book Name
         </h2>
-        <div className="flex  items-center gap-2 text-[14px] mt-3">
+        <div className="flex items-center gap-2 text-[14px] mt-3">
 
-        <div class="inline-block relative ">
+        <div class="hidden sm:block  relative ">
           <select class="block appearance-none w-full h-[40px] bg-[#0a101b] px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
             <option>
               All
@@ -47,7 +47,7 @@ const Category = () => {
 
 
 
-        <div class="inline-block relative">
+        <div class="hidden sm:block  relative">
           <select class="block appearance-none w-full h-[40px] bg-[#0a101b] px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
             <option>
               Genres
@@ -68,7 +68,7 @@ const Category = () => {
         </div>
 
 
-        <div class="inline-block relative">
+        <div class="hidden sm:block  relative">
           <select class="block appearance-none w-full h-[40px] bg-[#0a101b] px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
             <option>
               Year
@@ -113,25 +113,14 @@ const Category = () => {
 
       </div>
         <div className="bg-[#0a101b] my-3 mx-5 rounded-md mb-5">
-        <div className="grid grid-cols-7 pt-5">
+        <div className="">
           <Java />
-          <Java />
-          <Java />
-          <Java />
-          <Java />
-          <Java />
-          <Java />
-          <Java />
-          <Java />
-          <Java />
-          <Java />
-          <Java />
-          <Java />
-          <Java />
+ 
           
         </div>
       </div>
       <Networking/>
+      
       <ThirdYear/>
     </div>
 

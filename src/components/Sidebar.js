@@ -11,7 +11,7 @@ import { FiHelpCircle } from "react-icons/fi";
 
 const Sidebar = () => {
   return (
-    <div>
+    <div className="p-0 sm:block z-30  relative">
       <div className="px-5 py-3">
         <Link
           className="flex items-center justify-between text-[#0dd6b8]"
@@ -61,17 +61,17 @@ const Sidebar = () => {
         </Link>
         <Link
           className="py-2 px-5 rounded-md hover:bg-[#0dd6b814] hover:text-[#0dd6b8] flex items-center gap-3"
-          to="/settings"
+          to="/resources"
         >
           <AiOutlineSetting/>
-          <span>Settings</span>
+          <span>Resources</span>
         </Link>
         <Link
           className="py-2 px-5 rounded-md hover:bg-[#0dd6b814] hover:text-[#0dd6b8] flex items-center gap-3"
-          to="/help"
+          to="/support"
         >
           <FiHelpCircle/>
-          <span>Help</span>
+          <span>Support</span>
         </Link>
       </div>
     </div>

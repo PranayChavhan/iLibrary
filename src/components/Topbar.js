@@ -1,36 +1,229 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import swal from "sweetalert";
+import axios from "axios";
 import { BsSearch } from "react-icons/bs";
-import { BsPersonCircle } from "react-icons/bs";
-import { RiNotification2Line } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 const Topbar = () => {
+  let navigate = useNavigate();
+  const [stateee, setStateee] = useState(false);
+  const [modal, setModal] = useState(false);
+
+  const [cpass, setCpass] = useState("");
+  const [npass, setNpass] = useState("");
+  const [ccpass, setCcpass] = useState("");
+
+  var retrievedObject = localStorage.getItem("isAuthenticated");
+
+  let result = JSON.parse(retrievedObject);
+
+  console.log('====================================');
+  console.log(result);
+  console.log('====================================');
+
+
+
+  const baseURL = ``;
+
+  const handleSubmit = (e) => {
+
+    const formData = new FormData();
+    formData.append("cpass", cpass);
+    formData.append("password", npass);
+    formData.append("name", result.name);
+    formData.append("enrollment", result.enrollment);
+    formData.append("email", result.email);
+    formData.append("contact", result.contact);
+    formData.append("address", result.address);
+    formData.append("department", result.department);
+    formData.append("year", result.year);
+    formData.append("userImg", result.userImg);
+
+    console.log('ididididididididid');
+    console.log(result.id);
+    console.log('====================================');
+
+    // console.log('====================================');
+    // console.log(cpass, npass, ccpass, result.name, result.enrollment, result.email, result.contact, result.address, result.department, result.year, result.userImg );
+    // console.log('====================================');
+
+    axios
+      .post(`http://127.0.0.1:8000/api/changepassword/${result.id}`, formData)
+      .then((res) => {
+        if (res.data.status == 202) {
+          swal({
+            title: "Good job!",
+            text: "Book added to wishlist successfully",
+            icon: "success",
+            button: {
+              text: "Done",
+            },
+          });
+        } else {
+          swal({
+            title: "Error",
+            text: "Login Faild",
+            icon: "error",
+            button: {
+              text: "Done",
+            },
+          });
+        }
+        
+      })
+      .catch((err) => alert(err));
+  };
+
   return (
-    <div className="fixed w-[82%] z-10 bg-[#030508]">
-      <div className="px-5 py-3 flex justify-between items-center border-b-[1px] border-[#343a40]">
-        <div>
-          <h1 className="text-[19.2px] font-semibold">Books</h1>
-        </div>
-        <div className="w-[40%] relative">
-          <span className="left-3 top-3 absolute">
-            <BsSearch />
-          </span>
-          <input
-            className="bg-[#0a101b] h-[40px] w-[100%] rounded-md focus:outline-none static px-9"
-            placeholder="Search Here..."
-            type="search"
-          />
-        </div>
-        <div className="flex items-center gap-4">
-          <button className="text-white">
-            <RiNotification2Line />
-          </button>
-          <div className="flex items-center gap-4">
-            <BsPersonCircle />
-            <span>Pranay Chavhan</span>
+    <>
+      {modal ? (
+        <>
+          <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+            <div className="relative w-auto my-16 mx-auto max-w-3xl">
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                  <h3 className="text-3xl text-black font-semibold">
+                    Change Password
+                  </h3>
+                </div>
+
+                <div className="relative p-6 flex-auto">
+                  <div className="mb-3 pt-0 ">
+                    <label>
+                      <h3 className="text-black">Currunt Password</h3>
+                    </label>
+                    <input
+                      type="text"
+                      value={cpass}
+                      onChange={(e) => {
+                        setCpass(e.target.value);
+                      }}
+                      placeholder="currunt password"
+                      className="px-3 py-3 placeholder-slate-300 text-slate-600 relative bg-white rounded text-sm border border-slate-300 outline-none focus:outline-none focus:ring w-full"
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label>
+                      <h3 className="text-black">New Password</h3>
+                    </label>
+                    <input
+                      type="text"
+                      value={npass}
+                      onChange={(e) => {
+                        setNpass(e.target.value);
+                      }}
+                      placeholder="new password"
+                      className="px-3 py-3 placeholder-slate-300 text-slate-600 relative bg-white rounded text-sm border border-slate-300 outline-none focus:outline-none focus:ring w-full"
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label>
+                      <h3 className="text-black">Confirm Password</h3>
+                    </label>
+                    <input
+                      type="text"
+                      value={ccpass}
+                      onChange={(e) => {
+                        setCcpass(e.target.value);
+                      }}
+                      placeholder="confirm password"
+                      className="px-3 py-3 placeholder-slate-300 text-slate-600 relative bg-white rounded text-sm border border-slate-300 outline-none focus:outline-none focus:ring w-full"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                  <button
+                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => setModal(false)}
+                  >
+                    Close
+                  </button>
+                  <button
+                    className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={handleSubmit}
+                  >
+                    Save Changes
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+        </>
+      ) : null}
+
+      <div className="fixed sm:w-[82%] w-[100%] z-10 bg-[#030508]">
+        <div className="px-5 py-3 flex justify-between items-center border-b-[1px] border-[#343a40]">
+          <div>
+            <h1 className="text-[19.2px] font-semibold">Books</h1>
+          </div>
+          <div className="w-[40%] hidden sm:block relative">
+            <span className="left-3 top-3 absolute">
+              <BsSearch />
+            </span>
+            <input
+              className="bg-[#0a101b] h-[40px] w-[100%] rounded-md focus:outline-none static px-9"
+              placeholder="Search Here..."
+              type="search"
+            />
+          </div>
+          <div className="flex flex-col ml-10">
+            {stateee ? (
+              <>
+                <div className="flex items-center gap-4 ">
+                  <img
+                    onClick={() => {
+                      setStateee(false);
+                    }}
+                    className="rounded-full cursor-pointer"
+                    src={result.userImg}
+                    alt="Prifile Image"
+                    width={45}
+                  />
+                  <span>{result.name}</span>
+                </div>
+
+                <div className="bg-[#0a101b] rounded-md h-24 w-36 text-[#9696a6] absolute top-16 flex flex-col p-1 pb-1">
+                  <button
+                    onClick={() => setModal(true)}
+                    className="hover:bg-[#0dd6b814] border-[1px] border-[#9696a6] mx-2 py-2  rounded-sm text-[12px] hover:text-[#0dd6b8] mb-2"
+                  >
+                    Change Password
+                  </button>
+                  <button
+                    onClick={() => {
+                      localStorage.clear();
+                      navigate("/");
+                    }}
+                    className=" hover:bg-[#0dd6b814] border-[1px] border-[#9696a6] rounded-sm mx-2 py-2  text-[12px] hover:text-[#0dd6b8] mb-2"
+                  >
+                    Log out
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex items-center gap-4">
+                  <img
+                    onClick={() => {
+                      setStateee(true);
+                    }}
+                    className="rounded-full cursor-pointer"
+                    src={result.userImg}
+                    alt="Prifile Image"
+                    width={45}
+                  />
+                  <span>{result.name}</span>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -7,36 +7,27 @@ const LoginEmail = () => {
   let navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem('isAuthenticated')) {
-      navigate('/home');
-    }else{
-      navigate('/');
+    if (localStorage.getItem("isAuthenticated")) {
+      navigate("/home");
+    } else {
+      navigate("/");
     }
-  }, [])
-  
+  }, []);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const baseURL = "http://127.0.0.1:8000/api/login";
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-
     const formData = new FormData();
     formData.append("email", email);
     formData.append("password", password);
 
-    let item = {email, password};
-    console.log(JSON.stringify(item));
-
-
     axios
       .post(baseURL, formData)
       .then((res) => {
-        console.log('====================================');
-        console.log(res.data);
-       
-        console.log('====================================');
+        let result = res.data.students;
 
         if (res.data.status === 202) {
           swal({
@@ -44,24 +35,59 @@ const LoginEmail = () => {
             text: "Login Successfully",
             icon: "success",
             button: {
-              text:"Done",
+              text: "Done",
             },
-          })
-          // navigate('/home');
-          localStorage.setItem("isAuthenticated", "true")
-        } else{
+          });
+          navigate("/home");
+          localStorage.setItem("isAuthenticated", JSON.stringify(result));
+        } else {
           swal({
             title: "Error",
             text: "Login Faild",
             icon: "error",
             button: {
-              text:"Done",
+              text: "Done",
             },
-          })
+          });
         }
       })
       .catch((err) => alert("Eoor"));
-    }
+  };
+
+  const handleSubmittt = (e) => {
+    const formData = new FormData();
+    formData.append("teacher_id", email);
+    formData.append("password", password);
+
+    axios
+      .post("http://127.0.0.1:8000/api/teacherslogin", formData)
+      .then((res) => {
+        let resulttt = res.data.teachers;
+
+        if (res.data.status === 202) {
+          swal({
+            title: "Good job!",
+            text: "Login Successfully",
+            icon: "success",
+            button: {
+              text: "Done",
+            },
+          });
+          navigate("/home");
+          localStorage.setItem("isAuthenticated", JSON.stringify(resulttt));
+        } else {
+          swal({
+            title: "Error",
+            text: "Login Faild",
+            icon: "error",
+            button: {
+              text: "Done",
+            },
+          });
+        }
+      })
+      .catch((err) => alert("Eoor"));
+  };
 
   return (
     <div>
@@ -98,7 +124,7 @@ const LoginEmail = () => {
           </div>
         </div>
 
-        <div>
+        <div className="flex flex-row gap-4">
           <button
             onClick={handleSubmit}
             className="relative z-10  w-full p-0.5 inline-flex items-center justify-center font-semibold overflow-hidden group rounded-full"
@@ -106,7 +132,18 @@ const LoginEmail = () => {
           >
             <span className="w-full h-full rounded-full bg-gradient-to-br from-[#ff8a05] via-[#ff5478] to-[#ff00c6] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05] absolute"></span>
             <span className="relative rounded-full flex justify-center w-full py-2 transition-all ease-out bg-gray-900 group-hover:bg-opacity-0 duration-400">
-              <span className="relative text-white">Login</span>
+              <span className="relative text-white">Login as student</span>
+            </span>
+          </button>
+
+          <button
+            onClick={handleSubmittt}
+            className="relative z-10  w-full p-0.5 inline-flex items-center justify-center font-semibold overflow-hidden group rounded-full"
+            type="submit"
+          >
+            <span className="w-full h-full rounded-full bg-gradient-to-br from-[#ff8a05] via-[#ff5478] to-[#ff00c6] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05] absolute"></span>
+            <span className="relative rounded-full flex justify-center w-full py-2 transition-all ease-out bg-gray-900 group-hover:bg-opacity-0 duration-400">
+              <span className="relative text-white">Login as teacher</span>
             </span>
           </button>
         </div>

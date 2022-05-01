@@ -5,13 +5,14 @@ import Category from "./pages/Category";
 import DigitalLibrary from "./pages/DigitalLibrary";
 import IssuedBook from "./pages/IssuedBook";
 import Wishlist from "./pages/Wishlist";
-import Settings from "./pages/Settings";
+import Settings from "./pages/Resources";
 import Help from "./pages/Help";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
+import BookDetails from "./pages/BookDetails";
 
 const App = () => {
-  return (
+  return ( 
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
@@ -21,8 +22,9 @@ const App = () => {
           <Route path="/digital-library" element={<DigitalLibrary />} />
           <Route path="/issued-book" element={<IssuedBook />} />
           <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/help" element={<Help />} />
+          <Route path="/resources" element={<Settings />} />
+          <Route path="/support" element={<Help />} />
+          <Route path="/:name" element={<BookDetails/>} />
         </Route>
       </Routes>
     </BrowserRouter>
