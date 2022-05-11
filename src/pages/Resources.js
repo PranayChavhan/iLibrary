@@ -11,7 +11,6 @@ const Settings = () => {
     axios
       .get(`http://127.0.0.1:8000/api/resources`)
       .then(function (response) {
-        console.log(response.data.resources);
         setBook(response.data.resources);
       })
       .catch(function (error) {

@@ -5,8 +5,10 @@ import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 
-const Home = () => {
 
+
+const Home = () => {
+ 
   return (
     <div className="bg-[#030508] min-h-screen">
       <div className="grid grid-cols-11">

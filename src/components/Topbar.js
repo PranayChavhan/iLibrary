@@ -17,13 +17,6 @@ const Topbar = () => {
 
   let result = JSON.parse(retrievedObject);
 
-  console.log('====================================');
-  console.log(result);
-  console.log('====================================');
-
-
-
-  const baseURL = ``;
 
   const handleSubmit = (e) => {
 
@@ -38,14 +31,6 @@ const Topbar = () => {
     formData.append("department", result.department);
     formData.append("year", result.year);
     formData.append("userImg", result.userImg);
-
-    console.log('ididididididididid');
-    console.log(result.id);
-    console.log('====================================');
-
-    // console.log('====================================');
-    // console.log(cpass, npass, ccpass, result.name, result.enrollment, result.email, result.contact, result.address, result.department, result.year, result.userImg );
-    // console.log('====================================');
 
     axios
       .post(`http://127.0.0.1:8000/api/changepassword/${result.id}`, formData)

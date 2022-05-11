@@ -9,7 +9,12 @@ import { MdOutlineLibraryAddCheck } from "react-icons/md";
 import { FiHeart } from "react-icons/fi";
 import { FiHelpCircle } from "react-icons/fi";
 
+import { useLocation } from "react-router-dom";
+
 const Sidebar = () => {
+  let params = useLocation();
+  const path = params.pathname;
+
   return (
     <div className="p-0 sm:block z-30  relative">
       <div className="px-5 py-3">
@@ -25,52 +30,80 @@ const Sidebar = () => {
       </div>
       <div className="flex flex-col text-[16px] gap-4">
         <Link
-          className="py-2 px-5 rounded-md hover:bg-[#0dd6b814] hover:text-[#0dd6b8] flex items-center gap-3"
+          className={
+            path == "/home"
+              ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
+              : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
+          }
           to="/home"
         >
           <AiOutlineHome />
           <span>Home</span>
         </Link>
         <Link
-          className="py-2 px-5 rounded-md hover:bg-[#0dd6b814] hover:text-[#0dd6b8] flex items-center gap-3"
+          className={
+            path == "/category"
+              ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
+              : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
+          }
           to="/category"
         >
-          <BiCategory/>
+          <BiCategory />
           <span>Category</span>
         </Link>
         <Link
-          className="py-2 px-5 rounded-md hover:bg-[#0dd6b814] hover:text-[#0dd6b8] flex items-center gap-3"
+          className={
+            path == "/digital-library"
+              ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
+              : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
+          }
           to="/digital-library"
         >
-          <IoLibraryOutline/>
+          <IoLibraryOutline />
           <span>Digital Library</span>
         </Link>
         <Link
-          className="py-2 px-5 rounded-md hover:bg-[#0dd6b814] hover:text-[#0dd6b8] flex items-center gap-3"
+          className={
+            path == "/issued-book"
+              ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
+              : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
+          }
           to="/issued-book"
         >
-          <MdOutlineLibraryAddCheck/>
+          <MdOutlineLibraryAddCheck />
           <span>Issued Books</span>
         </Link>
         <Link
-          className="py-2 px-5 rounded-md hover:bg-[#0dd6b814] hover:text-[#0dd6b8] flex items-center gap-3"
+          className={
+            path == "/wishlist"
+              ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
+              : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
+          }
           to="/wishlist"
         >
-          <FiHeart/>
+          <FiHeart />
           <span>Wishlist</span>
         </Link>
         <Link
-          className="py-2 px-5 rounded-md hover:bg-[#0dd6b814] hover:text-[#0dd6b8] flex items-center gap-3"
+          className={
+            path == "/resources"
+              ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
+              : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
+          }
           to="/resources"
         >
-          <AiOutlineSetting/>
+          <AiOutlineSetting />
           <span>Resources</span>
         </Link>
         <Link
-          className="py-2 px-5 rounded-md hover:bg-[#0dd6b814] hover:text-[#0dd6b8] flex items-center gap-3"
+          className={
+            path == "/support"
+              ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
+              : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
+          }
           to="/support"
         >
-          <FiHelpCircle/>
+          <FiHelpCircle />
           <span>Support</span>
         </Link>
       </div>

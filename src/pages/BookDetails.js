@@ -15,10 +15,6 @@ const BookDetails = () => {
   const [userEnrollment, setUserEnrollment] = useState("");
   const [userName, setUserName] = useState("");
 
-  console.log('hello hello hello');
-  console.log(title, author, category, image);
-  console.log('====================================');
-
   let params = useParams();
 
   const [book, setBook] = useState([]);
@@ -32,7 +28,6 @@ const BookDetails = () => {
     axios
       .get(`http://127.0.0.1:8000/api/search/${params.name}`)
       .then(function (response) {
-        console.log(response.data.books);
         setBook(response.data.books);
       })
       .catch(function (error) {
@@ -44,11 +39,6 @@ const BookDetails = () => {
 
   function removeItem(auth, cat, titl, img, status) {
 
-    console.log('====================================');
-    console.log(auth, cat, titl, img);
-    console.log('====================================');
-
-
     const article = {
       title: titl,
       author: auth,
@@ -59,12 +49,6 @@ const BookDetails = () => {
       userEnrollment: result.enrollment,
       userName: result.name,
     };
-
-    
-    console.log('==aaaaaaaaaaaa==================================');
-    console.log(article);
-    console.log('====================================');
-
 
     axios
       .post("http://127.0.0.1:8000/api/issuedbook", article)

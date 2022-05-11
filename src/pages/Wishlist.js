@@ -16,7 +16,6 @@ const Wishlist = () => {
     axios
       .get(`http://127.0.0.1:8000/api/wishlist/${result.email}`)
       .then(function (response) {
-        console.log(response.data.wishlist);
         setBooks(response.data.wishlist);
       })
       .catch(function (error) {
@@ -82,3 +81,6 @@ const Wishlist = () => {
 };
 
 export default Wishlist;
+
+
+
