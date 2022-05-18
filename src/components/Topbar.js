@@ -5,6 +5,8 @@ import { BsSearch } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 const Topbar = () => {
+  const apiKey = process.env.REACT_APP_NEWS_API;
+
   let navigate = useNavigate();
   const [stateee, setStateee] = useState(false);
   const [modal, setModal] = useState(false);
@@ -16,6 +18,10 @@ const Topbar = () => {
   var retrievedObject = localStorage.getItem("isAuthenticated");
 
   let result = JSON.parse(retrievedObject);
+
+  console.log('====================================');
+  console.log(result.userImg);
+  console.log('====================================');
 
 
   const handleSubmit = (e) => {
@@ -33,7 +39,7 @@ const Topbar = () => {
     formData.append("userImg", result.userImg);
 
     axios
-      .post(`http://127.0.0.1:8000/api/changepassword/${result.id}`, formData)
+      .post(`${apiKey}/api/changepassword/${result.id}`, formData)
       .then((res) => {
         if (res.data.status == 202) {
           swal({
@@ -196,7 +202,7 @@ const Topbar = () => {
                     onClick={() => {
                       setStateee(true);
                     }}
-                    className="rounded-full cursor-pointer"
+                    className=" rounded-full cursor-pointer"
                     src={result.userImg}
                     alt="Prifile Image"
                     width={45}

@@ -5,11 +5,9 @@ function ProtectedRoute() {
   const isAuthenticated = localStorage.getItem("isAuthenticated");
   if (isAuthenticated) {
     return <Outlet />;
-  } else{
+  } else {
     return <Navigate to="/" />;
   }
-
-  
 }
 
 export default ProtectedRoute;

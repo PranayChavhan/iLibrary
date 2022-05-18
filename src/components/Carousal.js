@@ -22,9 +22,11 @@ const Carousal = () => {
 
   const [books, setBooks] = useState([]);
 
+  const apiKey = process.env.REACT_APP_NEWS_API;
+
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/add/Web%20Development`)
+      .get(`${apiKey}/api/add/Web%20Development`)
       .then(function (response) {
         console.log(response.data);
         setBooks(response.data);

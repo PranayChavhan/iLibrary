@@ -11,10 +11,11 @@ const Wishlist = () => {
   var retrievedObject = localStorage.getItem("isAuthenticated");
 
   let result = JSON.parse(retrievedObject);
+  const apiKey = process.env.REACT_APP_NEWS_API;
 
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/wishlist/${result.email}`)
+      .get(`${apiKey}/api/wishlist/${result.email}`)
       .then(function (response) {
         setBooks(response.data.wishlist);
       })

@@ -7,9 +7,11 @@ import Topbar from "../components/Topbar";
 const Settings = () => {
   const [book, setBook] = useState([]);
 
+  const apiKey = process.env.REACT_APP_NEWS_API;
+
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/resources`)
+      .get(`${apiKey}/api/resources`)
       .then(function (response) {
         setBook(response.data.resources);
       })

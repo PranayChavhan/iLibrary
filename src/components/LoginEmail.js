@@ -17,7 +17,11 @@ const LoginEmail = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const baseURL = "http://127.0.0.1:8000/api/login";
+  const apiKey = process.env.REACT_APP_NEWS_API;
+
+  console.log('====================================');
+  console.log(apiKey);
+  console.log('====================================');
 
   const handleSubmit = (e) => {
     const formData = new FormData();
@@ -25,7 +29,7 @@ const LoginEmail = () => {
     formData.append("password", password);
 
     axios
-      .post(baseURL, formData)
+      .post(`${apiKey}/api/login`, formData)
       .then((res) => {
         let result = res.data.students;
 
@@ -60,7 +64,7 @@ const LoginEmail = () => {
     formData.append("password", password);
 
     axios
-      .post("http://127.0.0.1:8000/api/teacherslogin", formData)
+      .post(`${apiKey}/api/teacherslogin`, formData)
       .then((res) => {
         let resulttt = res.data.teachers;
 

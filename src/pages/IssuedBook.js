@@ -5,13 +5,14 @@ import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 
 const IssuedBook = () => {
+  const apiKey = process.env.REACT_APP_NEWS_API;
   const [books, setBooks] = useState([]);
   var retrievedObject = localStorage.getItem("isAuthenticated");
   let result = JSON.parse(retrievedObject);
 
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/issuedbook/${result.email}`)
+      .get(`${apiKey}/api/issuedbook/${result.email}`)
       .then(function (response) {
         setBooks(response.data.issuedbook);
       })

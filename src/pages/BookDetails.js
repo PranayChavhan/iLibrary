@@ -7,6 +7,7 @@ import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
 
 const BookDetails = () => {
+  const apiKey = process.env.REACT_APP_NEWS_API;
   const [author, setAuthor] = useState("");
   const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
@@ -26,7 +27,7 @@ const BookDetails = () => {
 
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/api/search/${params.name}`)
+      .get(`${apiKey}/api/search/${params.name}`)
       .then(function (response) {
         setBook(response.data.books);
       })
@@ -51,7 +52,7 @@ const BookDetails = () => {
     };
 
     axios
-      .post("http://127.0.0.1:8000/api/issuedbook", article)
+      .post(`${apiKey}/api/issuedbook`, article)
       .then((res) => {
         swal({
           title: "Good job!",
