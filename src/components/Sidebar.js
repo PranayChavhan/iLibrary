@@ -31,7 +31,7 @@ const Sidebar = () => {
       <div className="flex flex-col text-[16px] gap-4">
         <Link
           className={
-            path == "/home"
+            path === "/home"
               ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
               : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
           }
@@ -42,7 +42,7 @@ const Sidebar = () => {
         </Link>
         <Link
           className={
-            path == "/category"
+            path === "/category"
               ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
               : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
           }
@@ -53,7 +53,7 @@ const Sidebar = () => {
         </Link>
         <Link
           className={
-            path == "/digital-library"
+            path === "/digital-library"
               ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
               : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
           }
@@ -64,7 +64,7 @@ const Sidebar = () => {
         </Link>
         <Link
           className={
-            path == "/issued-book"
+            path === "/issued-book"
               ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
               : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
           }
@@ -75,7 +75,7 @@ const Sidebar = () => {
         </Link>
         <Link
           className={
-            path == "/wishlist"
+            path === "/wishlist"
               ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
               : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
           }
@@ -86,7 +86,7 @@ const Sidebar = () => {
         </Link>
         <Link
           className={
-            path == "/resources"
+            path === "/resources"
               ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
               : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
           }
@@ -95,9 +95,9 @@ const Sidebar = () => {
           <AiOutlineSetting />
           <span>Resources</span>
         </Link>
-        <Link
+        {/* <Link
           className={
-            path == "/support"
+            path === "/support"
               ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
               : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
           }
@@ -105,8 +105,34 @@ const Sidebar = () => {
         >
           <FiHelpCircle />
           <span>Support</span>
+        </Link> */}
+        <Link
+          className={
+            path === "/about"
+              ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
+              : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
+          }
+          to="/about"
+        >
+          <FiHelpCircle />
+          <span>About Us</span>
         </Link>
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
     </div>
   );
 };

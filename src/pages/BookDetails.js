@@ -5,6 +5,16 @@ import swal from "sweetalert";
 import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
 import Topbar from "../components/Topbar";
+import { Link } from "react-router-dom";
+import { AiOutlineHome } from "react-icons/ai";
+import { AiOutlineSetting } from "react-icons/ai";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { BiCategory } from "react-icons/bi";
+import { IoLibraryOutline } from "react-icons/io5";
+import { MdOutlineLibraryAddCheck } from "react-icons/md";
+import { FiHeart } from "react-icons/fi";
+import { FiHelpCircle } from "react-icons/fi";
+import { useLocation } from "react-router-dom";
 
 const BookDetails = () => {
   const apiKey = process.env.REACT_APP_NEWS_API;
@@ -56,7 +66,7 @@ const BookDetails = () => {
       .then((res) => {
         swal({
           title: "Good job!",
-          text: "Book added to wishlist successfully",
+          text: "Book issued successfully",
           icon: "success",
           button: {
             text: "Done",
@@ -66,6 +76,19 @@ const BookDetails = () => {
       .catch((err) => alert(err));
   }
 
+  let paramss = useLocation();
+  const path = paramss.pathname;
+
+  const [clicked, setClicked] = useState(false);
+
+  const handleclick = () => {
+    setClicked(true);
+
+    if (clicked === true) {
+      setClicked(false);
+    }
+  };
+
   return (
     <div>
       <div className="bg-[#030508] min-h-screen">
@@ -73,9 +96,113 @@ const BookDetails = () => {
           <div className="hidden sm:block col-start-1 col-end-3 bg-[#0a101b] text-[#9696a6] min-h-screen fixed w-[18%]">
             <Sidebar />
           </div>
-          <div className="col-start-1 sm:col-start-3 col-end-12 text-[#fafafb] relative">
+          <div className="col-start-1 sm:col-start-3 col-end-12 text-[#fafafb]">
+          <div onClick={handleclick}>
             <Topbar />
+          </div>
             <div className="mt-[118px]">
+
+            <>
+              {clicked ? (
+                <>
+                  <div className="block md:hidden text-[#9696a6] z-50">
+                    <div className="flex flex-col text-[16px] gap-4">
+                      <Link
+                        className={
+                          path === "/home"
+                            ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
+                            : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
+                        }
+                        to="/home"
+                      >
+                        <AiOutlineHome />
+                        <span>Home</span>
+                      </Link>
+
+                      <Link
+                        className={
+                          path === "/category"
+                            ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
+                            : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
+                        }
+                        to="/category"
+                      >
+                        <BiCategory />
+                        <span>Category</span>
+                      </Link>
+                      <Link
+                        className={
+                          path === "/digital-library"
+                            ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
+                            : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
+                        }
+                        to="/digital-library"
+                      >
+                        <IoLibraryOutline />
+                        <span>Digital Library</span>
+                      </Link>
+                      <Link
+                        className={
+                          path === "/issued-book"
+                            ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
+                            : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
+                        }
+                        to="/issued-book"
+                      >
+                        <MdOutlineLibraryAddCheck />
+                        <span>Issued Books</span>
+                      </Link>
+                      <Link
+                        className={
+                          path === "/wishlist"
+                            ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
+                            : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
+                        }
+                        to="/wishlist"
+                      >
+                        <FiHeart />
+                        <span>Wishlist</span>
+                      </Link>
+                      <Link
+                        className={
+                          path === "/resources"
+                            ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
+                            : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
+                        }
+                        to="/resources"
+                      >
+                        <AiOutlineSetting />
+                        <span>Resources</span>
+                      </Link>
+                      <Link
+                        className={
+                          path === "/support"
+                            ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
+                            : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
+                        }
+                        to="/support"
+                      >
+                        <FiHelpCircle />
+                        <span>Support</span>
+                      </Link>
+                      <Link
+                        className={
+                          path === "/about"
+                            ? `py-2 px-5 rounded-md  flex items-center gap-3  bg-[#0dd6b814] text-[#0dd6b8]`
+                            : `py-2 px-5 rounded-md  flex items-center gap-3 hover:bg-[#0dd6b814] hover:text-[#0dd6b8]`
+                        }
+                        to="/about"
+                      >
+                        <FiHelpCircle />
+                        <span>About Us</span>
+                      </Link>
+                    </div>
+                  </div>
+                </>
+              ) : null}
+            </>
+
+
               {book.map((element) => {
                 const {
                   author,
@@ -97,7 +224,7 @@ const BookDetails = () => {
                         <img
                           className="rounded-sm"
                           width={250}
-                          src={image}
+                          src={`${apiKey}${image}`}
                           alt=""
                         />
                       </div>
@@ -120,18 +247,7 @@ const BookDetails = () => {
                           <p>{description}</p>
 
                           <div className="mt-6 flex flex-row gap-5 items-center justify-start">
-                            <a
-                              href="#_"
-                              class=" mt-6 relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-red-500 rounded-xl group"
-                            >
-                              <span class="absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-red-700 rounded group-hover:-mr-4 group-hover:-mt-4">
-                                <span class="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"></span>
-                              </span>
-                              <span class="absolute bottom-0 left-0 w-full h-full transition-all duration-500 ease-in-out delay-200 -translate-x-full translate-y-full bg-red-600 rounded-2xl group-hover:mb-12 group-hover:translate-x-0"></span>
-                              <span class="relative w-full text-left text-white transition-colors duration-200 ease-in-out group-hover:text-white">
-                                Not Available
-                              </span>
-                            </a>
+                            
                             <button
                               onClick={ 
                                 (e) => {

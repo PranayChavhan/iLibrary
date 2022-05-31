@@ -58,7 +58,7 @@ const Java = () => {
     console.log("====================================");
 
     axios
-      .post(baseURL, article)
+      .post(`${apiKey}/api/wishlist`, article)
       .then((res) => {
         swal({
           title: "Good job!",
@@ -71,7 +71,6 @@ const Java = () => {
       })
       .catch((err) => alert(err));
   }
-
   return (
     <div className="justify-center items-center sm:mb-10 grid grid-cols-3 sm:grid-cols-7 gap-5">
       {books.map((element) => {
@@ -81,7 +80,7 @@ const Java = () => {
           <div className=" flex justify-center p-2">
             <form>
               <div className="relative sm:h-52 sm:w-32 hover:h-60 hover:w-40">
-                <a className="flex justify-center " href="/">
+                <a className="flex justify-center ">
                   <div className="h-40 w-40 bg-gradient-to-t from-black absolute -bottom-1 opacity-0 hover:opacity-100">
                     <button
                       onClick={(e) => {
@@ -98,7 +97,7 @@ const Java = () => {
                       </Link>
                     </button>
                   </div>
-                  <img className="bg-cover static rounded-sm" src={image} />
+                  <img className="bg-cover static rounded-sm" src={`${apiKey}${image}`} />
                 </a>
                 <h1 className="flex items-center justify-center text-[16px] font-semibold">
                   {title.slice(0, 15) + "..."}

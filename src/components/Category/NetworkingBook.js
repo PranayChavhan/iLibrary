@@ -1,39 +1,19 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
-import swal from "sweetalert";
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
 
-const Carousal = () => {
-  const settings = {
-    infinite: true,
-    speed: 500,
-    slidesToShow: 6,
-    slidesToScroll: 1,
-    autoplay: true,
-  };
-  const settings2 = {
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-  };
-
+const NetworkingBook = () => {
   const [books, setBooks] = useState([]);
-
   const apiKey = process.env.REACT_APP_NEWS_API;
 
-  var retrievedObject = localStorage.getItem("isAuthenticated");
-
-  let result = JSON.parse(retrievedObject);
-  const baseURL = `${apiKey}/api/wishlist`;
+  console.log("====================================");
+  console.log(`${apiKey}/api/add/Networking`);
+  console.log("====================================");
 
   useEffect(() => {
     axios
-      .get(`${apiKey}/api/add/Web%20Development`)
+      .get(`${apiKey}/api/add/Networking`)
       .then(function (response) {
         console.log(response.data);
         setBooks(response.data);
@@ -42,6 +22,21 @@ const Carousal = () => {
         console.log(error);
       });
   }, []);
+
+  var retrievedObject = localStorage.getItem("isAuthenticated");
+
+  let result = JSON.parse(retrievedObject);
+
+  const [author, setAuthor] = useState("");
+  const [category, setCategory] = useState("");
+  const [title, setTitle] = useState("");
+  const [image, setImage] = useState("");
+
+  console.log("====================================");
+  console.log(title, author, category, image);
+  console.log("====================================");
+
+  const baseURL = `${apiKey}/api/wishlist`;
 
   function removeItem(auth, cat, titl, img) {
     console.log("====================================");
@@ -76,25 +71,25 @@ const Carousal = () => {
       })
       .catch((err) => alert(err));
   }
-
-
   return (
-    <div className="overflow-hidden">
-      <h2 className="text-[19.2px] font-semibold py-3 px-5">Popular Books</h2>
-      <div className="hidden md:block">
-        <Slider {...settings}>
-          {books.map((element) => {
-            const { author, category, noofbook, id, title, image } = element;
+      <>
+       <div className="flex justify-between items-center">
+        <h1 className="text-[19.2px] font-semibold px-2 py-3">Networking</h1>
+        <button className="bg-[#0dd6b8] mx-2 my-3 p-1 rounded-md text-[14px] text-white">
+          View More
+        </button>
+      </div>
+    <div className="justify-center items-center sm:mb-10 grid grid-cols-3 sm:grid-cols-7 gap-5">
+      {books.map((element) => {
+        const { author, category, noofbook, id, title, image } = element;
 
-            return (
-              <div className="">
-                <a className="relative flex justify-center cursor-pointer">
-                  <img
-                    className="sm:h-64 sm:w-44 h-32 w-22"
-                    src={`${apiKey}${image}`}
-                    alt=""
-                  />
-                  <div className="h-44 w-44 bg-gradient-to-t from-black absolute -bottom-1 opacity-0 hover:opacity-100">
+        return (
+          
+          <div className=" flex justify-center p-2">
+            <form>
+              <div className="relative sm:h-52 sm:w-32 hover:h-60 hover:w-40">
+                <a className="flex justify-center ">
+                  <div className="h-40 w-40 bg-gradient-to-t from-black absolute -bottom-1 opacity-0 hover:opacity-100">
                     <button
                       onClick={(e) => {
                         e.preventDefault();
@@ -110,45 +105,21 @@ const Carousal = () => {
                       </Link>
                     </button>
                   </div>
+                  <img className="bg-cover static rounded-sm" src={`${apiKey}${image}`} />
                 </a>
                 <h1 className="flex items-center justify-center text-[16px] font-semibold">
-                  {title.slice(0, 15) + `...`}
-                </h1>
-               
-              </div>
-            );
-          })}
-      
-        </Slider>
-      </div>
-
-      <div className="md:hidden block">
-        <Slider {...settings2}>
-        {books.map((element) => {
-            const { author, category, noofbook, id, title, image } = element;
-
-            return (
-              <div>
-                 
-                <a className=" flex justify-center">
-                  <img
-                    className="sm:h-64 sm:w-44 h-32 w-22"
-                    src={`${apiKey}${image}`}
-                    alt=""
-                  />
-                </a>
-                <h1 className="flex items-center justify-center text-[16px] font-semibold">
-                  {title.slice(0, 15) + `...`}
+                  {title.slice(0, 15) + "..."}
                 </h1>
               </div>
-            );
-          })}
-
-          
-        </Slider>
-      </div>
+            </form>
+          </div>
+        );
+      })}
     </div>
+    
+  </>
   );
+  
 };
 
-export default Carousal;
+export default NetworkingBook;

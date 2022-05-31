@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const Networking = () => {
+const DSebook = () => {
   const [books, setBooks] = useState([]);
   const apiKey = process.env.REACT_APP_NEWS_API;
 
   useEffect(() => {
     axios
-      .get(`${apiKey}/api/addebook/Networking`)
+      .get(`${apiKey}/api/addebook/Data%20Structure`)
       .then(function (response) {
         console.log(response.data);
         setBooks(response.data);
@@ -20,7 +20,7 @@ const Networking = () => {
   return (
     <>
       <div className="flex justify-between items-center">
-        <h1 className="text-[19.2px] font-semibold px-2 py-3">Networking</h1>
+        <h1 className="text-[19.2px] font-semibold px-2 py-3">Java</h1>
         <button className="bg-[#0dd6b8] mx-2 my-3 p-1 rounded-md text-[14px] text-white">
           View More
         </button>
@@ -63,4 +63,4 @@ const Networking = () => {
   );
 };
 
-export default Networking;
+export default DSebook;

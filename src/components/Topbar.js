@@ -3,6 +3,8 @@ import swal from "sweetalert";
 import axios from "axios";
 import { BsSearch } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import ReactRoundedImage from "react-rounded-image";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Topbar = () => {
   const apiKey = process.env.REACT_APP_NEWS_API;
@@ -19,13 +21,7 @@ const Topbar = () => {
 
   let result = JSON.parse(retrievedObject);
 
-  console.log('====================================');
-  console.log(result.userImg);
-  console.log('====================================');
-
-
   const handleSubmit = (e) => {
-
     const formData = new FormData();
     formData.append("cpass", cpass);
     formData.append("password", npass);
@@ -44,7 +40,7 @@ const Topbar = () => {
         if (res.data.status == 202) {
           swal({
             title: "Good job!",
-            text: "Book added to wishlist successfully",
+            text: "Password Changed successfully",
             icon: "success",
             button: {
               text: "Done",
@@ -53,17 +49,35 @@ const Topbar = () => {
         } else {
           swal({
             title: "Error",
-            text: "Login Faild",
+            text: "Please Confirm Password",
             icon: "error",
             button: {
               text: "Done",
             },
           });
         }
-        
       })
       .catch((err) => alert(err));
   };
+
+  // let imgurl =
+  //   "https://drive.google.com/open?id=1fNYn2MF5smF6Wy_BeKosruqFk11P339q";
+  //   "https://drive.google.com/open?id=1uZ7ZP-U-dQosww3TolLOF7ev9B7Jd73P"
+  //    https://drive.google.com/open?id=1uZ7ZP-U-dQosww3TolLOF7ev9B7Jd73P
+
+  //    https://drive.google.com/file/d/1hlIi5X5OfiHyEo809oxpc6jLbyofc3l6/view?usp=sharing
+
+
+
+  var imgID = result.userImg.substring(32);
+
+  console.log("====================================");
+  console.log(imgID);
+  console.log("====================================");
+
+  console.log('|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||');
+  console.log(result.userImg, imgID);
+  console.log('|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||');
 
   return (
     <>
@@ -149,8 +163,15 @@ const Topbar = () => {
       <div className="fixed sm:w-[82%] w-[100%] z-10 bg-[#030508]">
         <div className="px-5 py-3 flex justify-between items-center border-b-[1px] border-[#343a40]">
           <div>
-            <h1 className="text-[19.2px] font-semibold">Books</h1>
+            <h1 className="hidden md:block text-[19.2px] font-semibold">
+              Books
+            </h1>
+            <h1 className="block md:hidden text-[19.2px] font-semibold">
+              {" "}
+              <GiHamburgerMenu />{" "}
+            </h1>
           </div>
+
           <div className="w-[40%] hidden sm:block relative">
             <span className="left-3 top-3 absolute">
               <BsSearch />
@@ -165,19 +186,23 @@ const Topbar = () => {
             {stateee ? (
               <>
                 <div className="flex items-center gap-4 ">
-                  <img
+                  <div
+                    className=" cursor-pointer"
                     onClick={() => {
                       setStateee(false);
                     }}
-                    className="rounded-full cursor-pointer"
-                    src={result.userImg}
-                    alt="Prifile Image"
-                    width={45}
-                  />
+                  >
+                    <ReactRoundedImage
+                      image={`https://drive.google.com/uc?export=view&id=${imgID}`}
+                      roundedSize="0"
+                      imageWidth="50"
+                      imageHeight="50"
+                    />
+                  </div>
                   <span>{result.name}</span>
                 </div>
 
-                <div className="bg-[#0a101b] rounded-md h-24 w-36 text-[#9696a6] absolute top-16 flex flex-col p-1 pb-1">
+                <div className="bg-[#0a101b] rounded-md h-24 w-36 text-[#9696a6] absolute top-16 sm:right-24 right-0  flex flex-col p-1 pb-1">
                   <button
                     onClick={() => setModal(true)}
                     className="hover:bg-[#0dd6b814] border-[1px] border-[#9696a6] mx-2 py-2  rounded-sm text-[12px] hover:text-[#0dd6b8] mb-2"
@@ -198,15 +223,19 @@ const Topbar = () => {
             ) : (
               <>
                 <div className="flex items-center gap-4">
-                  <img
+                  <div
+                    className=" cursor-pointer"
                     onClick={() => {
                       setStateee(true);
                     }}
-                    className=" rounded-full cursor-pointer"
-                    src={result.userImg}
-                    alt="Prifile Image"
-                    width={45}
-                  />
+                  >
+                    <ReactRoundedImage
+                      image={`https://drive.google.com/uc?export=view&id=${imgID}`}
+                      roundedSize="0"
+                      imageWidth="50"
+                      imageHeight="50"
+                    />
+                  </div>
                   <span>{result.name}</span>
                 </div>
               </>

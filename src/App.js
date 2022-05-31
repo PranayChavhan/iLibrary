@@ -10,6 +10,7 @@ import Help from "./pages/Help";
 import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import BookDetails from "./pages/BookDetails";
+import AboutUs from "./pages/AboutUs";
 
 
 const App = () => {
@@ -24,8 +25,9 @@ const App = () => {
           <Route path="/issued-book" element={<IssuedBook />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/resources" element={<Settings />} />
-          <Route path="/support" element={<Help />} />
+          
           <Route path="/:name" element={<BookDetails/>} />
+          <Route path="/about" element={<AboutUs/>} />
         </Route>
       </Routes>
     </BrowserRouter>

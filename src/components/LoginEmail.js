@@ -55,7 +55,7 @@ const LoginEmail = () => {
           });
         }
       })
-      .catch((err) => alert("Eoor"));
+      .catch((err) => alert(err));
   };
 
   const handleSubmittt = (e) => {
@@ -115,7 +115,7 @@ const LoginEmail = () => {
             Password
           </label>
           <input
-            type="email"
+            type="password"
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
